@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="<?= $data['site']['description']; ?>">
+        <meta property="og:image" content="<?= $data['site']['base_url']; ?>/avatar.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:site_name" content="<?= $data['site']['title']; ?>" />
+        <meta property="og:title" content="<?= $data['site']['title']; ?>" />
+        <meta property="og:description" content="<?= $data['site']['description']; ?>" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="<?= $data['site']['base_url']; ?>" />
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <title><?= $data['site']['title']; ?></title>
+    </head>
+    <body>
+        <div class="app">
+            <h1><?= $data['site']['question']; ?></h1>
+
+            <div class="btns">
+                <img class="loader" src="/img/Infinity-1s-200px.gif">
+                <form id="f1" action="api/vote">
+                    <button type="submit" class="yes-btn" name="sayyes" value="1"><?= $data['site']['yesbtn']; ?></button>
+                    <button type="submit" class="no-btn" name="sayno" value="1"><?= $data['site']['nobtn']; ?></button>
+                    <div class="g-recaptcha" data-sitekey="<?= $data['captcha']['sitekey']; ?>"></div>
+                </form>
+                <p id="info"></p>
+            </div>
+            <h2 id="today" style="margin-top:2em;"></h2>
+            <div id="chartWrapper">
+                <canvas id="canvas" width="500px" height="300px"></canvas>
+            </div>
+
+        </div>
+        <div class="fb-share-button" 
+             data-href="<?= $data['site']['base_url']; ?>" 
+             data-layout="button">
+        </div>
+    </body>
+
+
+    <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script>
+        window.SiteConfig = {};
+        SiteConfig.results_text = '<?= $data['site']['results_text']; ?>';
+        SiteConfig.empty_results_text = '<?= $data['site']['empty_results_text']; ?>';
+    </script>
+    <script src="https://cdn.jsdelivr.net/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/chart.js/2.2.1/Chart.bundle.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="/js/app.js"></script>
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id))
+                return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+</html>
