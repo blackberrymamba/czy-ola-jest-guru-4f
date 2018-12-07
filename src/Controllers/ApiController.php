@@ -116,10 +116,10 @@ class ApiController extends Controller {
 
     public function GetGuruLevels(\Slim\Http\Request $request, \Slim\Http\Response $response) {
         try {
-            $addns = '';
+            $addns = ' WHERE (`YES` + `NO`) > 0 ';
             $type = $request->getAttribute('type');
             if (isset($type) && ($type == "today")) {
-                $addns = 'WHERE DATE = "' . date('Y-m-d') . '"';
+                $addns .= ' AND DATE = "' . date('Y-m-d') . '"';
             }
             $sth = $this->db->query(
                     "
