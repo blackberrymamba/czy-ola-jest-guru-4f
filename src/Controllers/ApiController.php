@@ -47,7 +47,8 @@ class ApiController extends Controller {
         $stmt = $this->db->prepare($sql);
         $stmt->execute([date('Y-m-d')]);
         if (!$stmt->fetch()) {
-            if (!$this->db->query('INSERT INTO `votes`(`ID`) VALUES (NULL);')) {
+            $dt = date('Y-m-d');
+            if (!$this->db->query("INSERT INTO `votes`(`ID`, `DATE`) VALUES (NULL, '$dt');")) {
                 return json_encode($this->db->lastErrorMsg());
             }
         }
